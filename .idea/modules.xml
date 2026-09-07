@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/GerenciadorDePedidos.iml" filepath="$PROJECT_DIR$/.idea/GerenciadorDePedidos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Gerenciador-de-Pedidos-Web_Com-Spring.iml" filepath="$PROJECT_DIR$/.idea/Gerenciador-de-Pedidos-Web_Com-Spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GerenciadorDePedidos/GerenciadorDePedidos.iml" filepath="$PROJECT_DIR$/GerenciadorDePedidos/GerenciadorDePedidos.iml" />
     </modules>
   </component>
 </project>

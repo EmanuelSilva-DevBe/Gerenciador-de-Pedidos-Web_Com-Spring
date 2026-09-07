@@ -1,5 +1,9 @@
 package com.Emanuel.GerenciadorDePedidos.DTO;
 
-public record ProdutosDTO(Long id, String nomeProduto, Double precoProduto, Integer quantidadeProduto,
-                          String descricaoProduto, Integer quantidadeVendida) {
+import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.CategoriaDeProdutos;
+
+import java.math.BigDecimal;
+
+public record ProdutosDTO(Long id, String sku, String nomeProduto, BigDecimal precoProduto, String descricaoProduto, Boolean ativo,
+                          CategoriaDeProdutos categoria) {
 }
