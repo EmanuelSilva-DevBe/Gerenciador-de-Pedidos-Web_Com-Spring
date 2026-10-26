@@ -1,5 +1,6 @@
 package com.Emanuel.GerenciadorDePedidos.Domains.Catalogo;
 
+import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.ProdutosDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -32,11 +33,12 @@ public class Produtos {
     private CategoriaDeProdutos categoria;
 
 
-    public Produtos(String nomeProduto, BigDecimal precoProduto, String descricaoProduto, CategoriaDeProdutos categoria, Boolean ativo) {
-        this.nomeProduto = nomeProduto;
-        this.precoProduto = precoProduto;
-        this.descricaoProduto = descricaoProduto;
-        this.categoria = categoria;
-        this.ativo = ativo;
+    public Produtos(ProdutosDTO p) {
+        this.nomeProduto = p.nomeProduto();
+        this.precoProduto = p.precoProduto();
+        this.descricaoProduto = p.descricaoProduto();
+        this.categoria = p.categoria();
+        this.ativo = p.ativo();
     }
+
 }

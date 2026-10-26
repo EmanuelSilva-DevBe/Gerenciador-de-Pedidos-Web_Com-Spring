@@ -5,7 +5,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>C:/Users/Emanuel/IdeaProjects/Gerenciador-de-Pedidos-Web_Com-Spring/GerenciadorDePedidos/src/main/resources/application.properties</remarks>
+      <remarks>C:/Users/emanuel.farias/Downloads/Gerenciador-de-Pedidos-Web_Com-Spring/GerenciadorDePedidos/src/main/resources/application.properties</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost/gerenciador_de_pedidos</jdbc-url>
       <jdbc-additional-properties>

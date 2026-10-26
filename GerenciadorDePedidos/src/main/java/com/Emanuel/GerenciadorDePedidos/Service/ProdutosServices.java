@@ -1,17 +1,11 @@
 package com.Emanuel.GerenciadorDePedidos.Service;
 
-import com.Emanuel.GerenciadorDePedidos.DTO.ProdutosDTO;
-import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.CategoriaDeProdutos;
+import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.ProdutosDTO;
 import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.Produtos;
 import com.Emanuel.GerenciadorDePedidos.Repository.ProdutosRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -32,11 +26,13 @@ public class ProdutosServices {
                 .collect(Collectors.toList());
     }
 
-    public ResponseEntity<String> cadastraProduto(String nomeProduto, BigDecimal precoProduto, String descricaoProduto, CategoriaDeProdutos categoria, Boolean ativo) {
-        Produtos produto = new Produtos(nomeProduto, precoProduto, descricaoProduto, categoria, ativo);
+    public void cadastraProduto(ProdutosDTO p) {
+        Produtos produto = new Produtos(p);
+
         repositorio.save(produto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Produto criado com sucesso");
     }
+
+
     public List<ProdutosDTO> excluirProduto(String nome) {
         if (nome == null || nome.isEmpty()) {
             return Collections.emptyList();

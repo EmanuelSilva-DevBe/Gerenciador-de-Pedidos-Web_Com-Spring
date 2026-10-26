@@ -1,11 +1,13 @@
 package com.Emanuel.GerenciadorDePedidos.Controller;
 
-import com.Emanuel.GerenciadorDePedidos.DTO.CadastroProdutoDTO;
+import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.DadosDetalhamentoProdutoDTO;
+import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.ProdutosDTO;
 import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.Produtos;
 import com.Emanuel.GerenciadorDePedidos.Service.ProdutosServices;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,18 +24,27 @@ public class ProdutosController {
     }
 
     @GetMapping
-    public List<Produtos> listar() {
-        return service.listarTodos();
+    public ResponseEntity<List<Produtos>> listar() {
+        var listaProdutos = service.listarTodos();
+
+        return ResponseEntity.ok(listaProdutos);
     }
 
     @GetMapping("/{id}")
-    public Optional<Produtos> buscarPorId(@PathVariable Long id) {
-        return service.buscaPorId(id);
+    public ResponseEntity<Optional<Produtos>> buscarPorId(@PathVariable Long id) {
+        var produto = service.buscaPorId(id);
+
+        return ResponseEntity.ok(produto);
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<String> cadastro(@Valid @RequestBody CadastroProdutoDTO dados){
-        return service.cadastraProduto(dados.nomeProduto(), dados.precoProduto(), dados.decricaoProduto(), dados.categoria(), dados.ativo());
+    public ResponseEntity cadastro(@Valid @RequestBody ProdutosDTO dados, UriComponentsBuilder uriBuilder){
+        Produtos produto = new Produtos();
+        service.cadastraProduto(dados);
+        var uri = uriBuilder.path("/cadastro/{id}").buildAndExpand(produto.getId()).toUri();
+
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoProdutoDTO(produto));
     }
 }
 

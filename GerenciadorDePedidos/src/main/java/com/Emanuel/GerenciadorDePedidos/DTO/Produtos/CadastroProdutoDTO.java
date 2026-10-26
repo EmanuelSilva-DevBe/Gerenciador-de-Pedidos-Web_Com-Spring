@@ -1,6 +1,7 @@
-package com.Emanuel.GerenciadorDePedidos.DTO;
+package com.Emanuel.GerenciadorDePedidos.DTO.Produtos;
 
 import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.CategoriaDeProdutos;
+import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.Produtos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -15,4 +16,8 @@ public record CadastroProdutoDTO(@NotBlank String nomeProduto,
                                  @ColumnDefault("true")
                                  Boolean ativo,
                                  CategoriaDeProdutos categoria) {
+    public CadastroProdutoDTO(Produtos p){
+        this(p.getNomeProduto(), p.getPrecoProduto(), p.getDescricaoProduto(), p.getAtivo(), p.getCategoria());
+
+    }
 }

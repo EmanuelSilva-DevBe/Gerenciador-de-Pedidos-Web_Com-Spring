@@ -1,4 +1,4 @@
 package com.Emanuel.GerenciadorDePedidos.Domains.Vendas;
 
-public class VendaItem {
+public class     VendaItem {
 }
