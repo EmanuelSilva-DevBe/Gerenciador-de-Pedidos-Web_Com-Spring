@@ -1,4 +1,4 @@
-package com.Emanuel.GerenciadorDePedidos.Exceptions;
+package com.Emanuel.GerenciadorDePedidos.Infra.Exceptions;
 
 public class ProdutoNaoEncontrado extends RuntimeException {
     public ProdutoNaoEncontrado(String message) {

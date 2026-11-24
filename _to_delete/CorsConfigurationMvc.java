@@ -1,4 +1,4 @@
-package com.Emanuel.GerenciadorDePedidos.Configuration;
+package com.Emanuel.GerenciadorDePedidos.Configuration.Cors;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

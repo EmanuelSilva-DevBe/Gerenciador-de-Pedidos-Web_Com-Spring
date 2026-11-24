@@ -26,10 +26,10 @@ public class ProdutosServices {
                 .collect(Collectors.toList());
     }
 
-    public void cadastraProduto(ProdutosDTO p) {
+    public Produtos cadastraProduto(ProdutosDTO p) {
         Produtos produto = new Produtos(p);
 
-        repositorio.save(produto);
+        return repositorio.save(produto);
     }
 
 
