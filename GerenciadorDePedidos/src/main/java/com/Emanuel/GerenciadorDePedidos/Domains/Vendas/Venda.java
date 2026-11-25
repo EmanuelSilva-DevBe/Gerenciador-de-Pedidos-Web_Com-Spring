@@ -27,7 +27,10 @@ public class Venda {
     @OneToMany(mappedBy = "idVenda")
     private List<VendaItem> itens = new ArrayList<>();
 
+    @Column(name = "valor_total_da_venda")
     private BigDecimal valorTotalDavenda = BigDecimal.ZERO;
+
+    private Boolean ativo;
 
 
     public void adicionaItem(VendaItem item){
@@ -38,7 +41,7 @@ public class Venda {
     public void calculaValoTotal(){
 
         for (VendaItem item : itens){
-           var valor = valorTotalDavenda.add(item.getPrecoUnitario());
+            valorTotalDavenda.add(item.getPrecoUnitario());
         }
 
     }
@@ -46,5 +49,10 @@ public class Venda {
     public Venda(DadosVendaDTO dados){
         this.itens = dados.itens();
         this.valorTotalDavenda = dados.valorTotal();
+        this.ativo = true;
+    }
+
+    public void deletaVenda(){
+        ativo = false;
     }
 }

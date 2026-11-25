@@ -1,9 +1,13 @@
 package com.Emanuel.GerenciadorDePedidos.Service;
 
+import com.Emanuel.GerenciadorDePedidos.DTO.ListaProdutosDTO;
+import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.DadosAtualizacaoDTO;
 import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.ProdutosDTO;
 import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.Produtos;
 import com.Emanuel.GerenciadorDePedidos.Repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -33,20 +37,25 @@ public class ProdutosServices {
     }
 
 
-    public List<ProdutosDTO> excluirProduto(String nome) {
-        if (nome == null || nome.isEmpty()) {
-            return Collections.emptyList();
-        }
+    public void excluirProduto(Long idProduto) {
+        var produtos = repositorio.getReferenceById(idProduto);
 
-        return repositorio.findByNomeProdutoContainingIgnoreCase(nome);
+        produtos.excluirProduto();
     }
 
-    public List<Produtos> listarTodos() {
-        return repositorio.findAll();
+    public Page<ListaProdutosDTO> listarTodos(Pageable paginacao) {
+        return repositorio.findAllByAtivoTrue(paginacao)
+                .map(ListaProdutosDTO::new);
     }
 
     public Optional<Produtos> buscaPorId(Long id) {
         return repositorio.findById(id);
+    }
+
+    public void atualizaDadosProduto(DadosAtualizacaoDTO dados){
+        var produto = repositorio.getReferenceById(dados.idVenda());
+
+        produto.atualizaDados(dados);
     }
 
 

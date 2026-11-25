@@ -1,5 +1,6 @@
 package com.Emanuel.GerenciadorDePedidos.Domains.Catalogo;
 
+import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.DadosAtualizacaoDTO;
 import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.ProdutosDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -39,6 +40,20 @@ public class Produtos {
         this.descricaoProduto = p.descricaoProduto();
         this.categoria = p.categoria();
         this.ativo = p.ativo();
+    }
+
+    public void excluirProduto() {
+        ativo = false;
+    }
+
+    public void atualizaDados(DadosAtualizacaoDTO dados){
+        if (dados.nomeProduto()!=null){
+            this.nomeProduto = dados.nomeProduto();
+        }if (dados.precoProduto()!=null){
+            this.precoProduto = dados.precoProduto();
+        }if (dados.descricao()!=null) {
+            this.descricaoProduto = dados.descricao();
+        }
     }
 
 }

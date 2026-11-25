@@ -1,5 +1,6 @@
 package com.Emanuel.GerenciadorDePedidos.Controller;
 
+import com.Emanuel.GerenciadorDePedidos.DTO.ListaProdutosDTO;
 import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.DadosDetalhamentoProdutoDTO;
 import com.Emanuel.GerenciadorDePedidos.DTO.Produtos.ProdutosDTO;
 import com.Emanuel.GerenciadorDePedidos.Domains.Catalogo.Produtos;
@@ -16,6 +17,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -40,8 +43,8 @@ public class ProdutosController {
     @ApiResponse(responseCode = "200", description = "Lista de produtos (pode ser vazia)")
 
     @GetMapping
-    public ResponseEntity<List<Produtos>> listar() {
-        return ResponseEntity.ok(service.listarTodos());
+    public ResponseEntity<Page<ListaProdutosDTO>> listar(Pageable page) {
+        return ResponseEntity.ok(service.listarTodos(page));
     }
 
     @Operation(summary = "Busca um produto pelo ID")
